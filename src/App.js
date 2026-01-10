@@ -456,27 +456,27 @@ const Card3D = ({ title, roleName, sub, type, isRevealed, onClick, spritePositio
             <p className="text-base text-slate-500 mt-4 animate-pulse">點擊翻開身份</p>
           </div>
 
-          {/* 正面 */}
-          <div 
-            className={`absolute w-full h-full backface-hidden border-2 rounded-xl shadow-[0_0_40px_rgba(0,0,0,0.6)] flex flex-col items-center overflow-hidden
-              ${type === 'GOOD' ? 'bg-gradient-to-b from-blue-900 to-slate-900 border-blue-400/50' : 'bg-gradient-to-b from-red-900 to-slate-900 border-red-500/50'}`}
-            style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }} 
-          >
-             {/* 圖片區域 (Sprite) */}
-             <div className="w-full h-3/5 relative bg-black overflow-hidden group">
-                <div 
-                  className="w-full h-full absolute inset-0 transition-transform duration-700 group-hover:scale-110"
-                  style={{
-                    backgroundImage: `url(${SPRITE_CONFIG.src})`,
-                    // 修改處：強制高度為 rows * 100% (即 200%)，鎖定比例以顯示頭部
-                    backgroundSize: `${SPRITE_CONFIG.cols * 100}% ${SPRITE_CONFIG.rows * 100}%`,
-                    backgroundPosition: `${bgX}% ${bgY}%`,
-                    backgroundRepeat: 'no-repeat'
-                  }}
-                ></div>
-                
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent pointer-events-none"></div>
-             </div>
+  // ... 在 Card3D 組件 return 的 JSX 中 ...
+
+{/* 正面 */}
+<div className="...">
+    <div className="w-full h-3/4 relative bg-black overflow-hidden group">
+        <div 
+            className="..."
+            style={{
+                backgroundImage: `url(${SPRITE_CONFIG.src})`,
+                backgroundSize: `${SPRITE_CONFIG.cols * 100}% ${SPRITE_CONFIG.rows * 100}%`,
+                backgroundPosition: `${bgX}% ${bgY}%`,
+                backgroundRepeat: 'no-repeat'
+            }}
+        ></div>
+        {/* ... */}
+    </div>
+    <div className="w-full h-1/4 flex flex-col items-center justify-center p-2 relative z-10 -mt-4">
+        {/* 這裡可能需要微調 padding (p-4 -> p-2) 或 margin，視實際擁擠程度而定 */}
+        {/* ... ICON 與文字內容 ... */}
+    </div>
+</div>
 
              {/* 文字區域 */}
              <div className="w-full h-2/5 flex flex-col items-center justify-center p-4 relative z-10 -mt-6">
