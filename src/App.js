@@ -472,7 +472,8 @@ export default function AvalonGame() {
                   className="w-full h-full absolute inset-0 transition-transform duration-700 group-hover:scale-110"
                   style={{
                     backgroundImage: `url(${SPRITE_CONFIG.src})`,
-                    backgroundSize: `${SPRITE_CONFIG.cols * 100}% ${SPRITE_CONFIG.rows * 100}%`,
+                    // ✅ 修改後：讓高度自動 (auto)，這樣比例就會鎖定，多餘的部分會自動裁切掉
+                    backgroundSize: `${SPRITE_CONFIG.cols * 100}% auto`,
                     backgroundPosition: `${bgX}% ${bgY}%`,
                     backgroundRepeat: 'no-repeat'
                   }}
