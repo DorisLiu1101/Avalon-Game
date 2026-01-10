@@ -824,25 +824,57 @@ export default function AvalonGame() {
            </div>
         )}
 
-        {phase === 'QUEST_RESULT' && (
-           <div className="flex flex-col items-center justify-center h-full text-center space-y-10">
+{phase === 'QUEST_RESULT' && (
+           <div className="flex flex-col items-center justify-center h-full text-center space-y-6">
              <h2 className="text-3xl font-bold text-white">任務結果</h2>
-             <div className="flex flex-wrap justify-center gap-6">
-               {shuffleArray([...questVotes]).map((v, i) => (
-                 <motion.div 
-                   key={i}
-                   initial={{scale: 0, rotateY: 180}}
-                   animate={{scale: 1, rotateY: 0}}
-                   transition={{delay: i * 0.3, type: "spring"}}
-                   className={`w-28 h-40 rounded-xl flex flex-col items-center justify-center border-2 shadow-[0_0_30px_rgba(0,0,0,0.5)] relative overflow-hidden ${v ? 'bg-gradient-to-br from-blue-800 to-blue-950 border-blue-400' : 'bg-gradient-to-br from-red-800 to-red-950 border-red-500'}`}
-                 >
-                   <div className="absolute inset-0 bg-white/5 opacity-50"></div>
-                   {v ? <Sword className="w-14 h-14 text-blue-200 mb-3 relative z-10" /> : <Skull className="w-14 h-14 text-red-200 mb-3 relative z-10" />}
-                   <span className={`text-sm font-bold uppercase relative z-10 ${v ? 'text-blue-100' : 'text-red-100'}`}>{v ? 'SUCCESS' : 'FAIL'}</span>
-                 </motion.div>
-               ))}
+             
+             {/* 上半部：成功票展示區 */}
+             <div className="w-full bg-blue-900/20 p-4 rounded-xl border border-blue-500/30">
+                <p className="text-blue-400 text-sm font-bold mb-4 uppercase tracking-widest flex items-center justify-center">
+                    <CheckCircle className="w-4 h-4 mr-2"/> 
+                    成功票數：{questVotes.filter(v => v).length}
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                    {questVotes.filter(v => v).map((_, i) => (
+                        <motion.div 
+                        key={`success-${i}`}
+                        initial={{scale: 0, opacity: 0}}
+                        animate={{scale: 1, opacity: 1}}
+                        transition={{delay: i * 0.1}}
+                        className="w-20 h-28 rounded-lg flex flex-col items-center justify-center border-2 bg-gradient-to-br from-blue-800 to-blue-950 border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.4)]"
+                        >
+                            <Sword className="w-8 h-8 text-blue-200 mb-2" />
+                            <span className="text-xs font-bold text-blue-100">SUCCESS</span>
+                        </motion.div>
+                    ))}
+                    {questVotes.filter(v => v).length === 0 && <span className="text-slate-500 text-sm py-2">無成功票</span>}
+                </div>
              </div>
-             <button onClick={processQuestResult} className="px-12 py-4 bg-amber-600 hover:bg-amber-500 text-white text-xl font-bold rounded-xl mt-4 shadow-lg transition-colors">
+
+             {/* 下半部：失敗票展示區 */}
+             <div className="w-full bg-red-900/20 p-4 rounded-xl border border-red-500/30">
+                <p className="text-red-400 text-sm font-bold mb-4 uppercase tracking-widest flex items-center justify-center">
+                    <XCircle className="w-4 h-4 mr-2"/> 
+                    失敗票數：{questVotes.filter(v => !v).length}
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                    {questVotes.filter(v => !v).map((_, i) => (
+                        <motion.div 
+                        key={`fail-${i}`}
+                        initial={{scale: 0, opacity: 0}}
+                        animate={{scale: 1, opacity: 1}}
+                        transition={{delay: i * 0.1}}
+                        className="w-20 h-28 rounded-lg flex flex-col items-center justify-center border-2 bg-gradient-to-br from-red-800 to-red-950 border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.4)]"
+                        >
+                            <Skull className="w-8 h-8 text-red-200 mb-2" />
+                            <span className="text-xs font-bold text-red-100">FAIL</span>
+                        </motion.div>
+                    ))}
+                    {questVotes.filter(v => !v).length === 0 && <span className="text-slate-500 text-sm py-2">無失敗票</span>}
+                </div>
+             </div>
+
+             <button onClick={processQuestResult} className="w-full py-4 bg-amber-600 hover:bg-amber-500 text-white text-xl font-bold rounded-xl shadow-lg transition-colors mt-2">
                確認並繼續
              </button>
            </div>
