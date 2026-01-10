@@ -432,12 +432,8 @@ export default function AvalonGame() {
 
   // --- 渲染組件 ---
 
-  const Card3D = ({ title, roleName, sub, type, isRevealed, onClick, spritePosition }) => {
+const Card3D = ({ title, roleName, sub, type, isRevealed, onClick, spritePosition }) => {
     // 計算背景圖偏移量
-    // cols=4 => 每個寬度 25%, rows=2 => 每個高度 50%
-    // backgroundPosition x% y%
-    // x: (colIndex / (cols - 1)) * 100
-    // y: (rowIndex / (rows - 1)) * 100
     const bgX = (spritePosition.col / (SPRITE_CONFIG.cols - 1)) * 100;
     const bgY = (spritePosition.row / (SPRITE_CONFIG.rows - 1)) * 100;
 
@@ -472,8 +468,8 @@ export default function AvalonGame() {
                   className="w-full h-full absolute inset-0 transition-transform duration-700 group-hover:scale-110"
                   style={{
                     backgroundImage: `url(${SPRITE_CONFIG.src})`,
-                    // ✅ 修改後：讓高度自動 (auto)，這樣比例就會鎖定，多餘的部分會自動裁切掉
-                    backgroundSize: `${SPRITE_CONFIG.cols * 100}% auto`,
+                    // 修改處：強制高度為 rows * 100% (即 200%)，鎖定比例以顯示頭部
+                    backgroundSize: `${SPRITE_CONFIG.cols * 100}% ${SPRITE_CONFIG.rows * 100}%`,
                     backgroundPosition: `${bgX}% ${bgY}%`,
                     backgroundRepeat: 'no-repeat'
                   }}
