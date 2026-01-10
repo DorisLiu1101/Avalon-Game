@@ -80,10 +80,10 @@ const ROLES_CONFIG = {
 const QUEST_CONFIG = {
   5: [2, 3, 2, 3, 3],
   6: [2, 3, 4, 3, 4],
-  7: [2, 3, 3, -4, 4],
-  8: [3, 4, 4, -5, 5],
-  9: [3, 4, 4, -5, 5],
-  10: [3, 4, 4, -5, 5],
+  7: [2, 3, 3, 4, 4], // 修改：-4 改為 4 (取消雙壞人機制)
+  8: [3, 4, 4, 5, 5], // 修改：-5 改為 5
+  9: [3, 4, 4, 5, 5], // 修改：-5 改為 5
+  10: [3, 4, 4, 5, 5], // 修改：-5 改為 5
 };
 
 const GOOD_EVIL_COUNT = {
@@ -158,45 +158,28 @@ const TutorialModal = ({ isOpen, onClose }) => {
         </div>
         
         <div className="p-6 space-y-6 overflow-y-auto max-h-[60vh] text-slate-300">
-          {/* 勝利條件區塊 */}
-          <section className="space-y-3">
-            <h3 className="text-white font-bold text-lg flex items-center border-b border-slate-700 pb-2">
-              <Crown className="w-5 h-5 mr-2 text-yellow-500"/> 勝利條件
-            </h3>
-            <div className="space-y-2 text-sm">
-              <div className="bg-blue-900/30 p-3 rounded-lg border border-blue-500/30">
-                <span className="text-blue-400 font-bold text-base block mb-1">🔵 正義方獲勝：</span>
-                1. 成功完成 <span className="text-white font-bold">3</span> 次任務。<br/>
-                2. 並且在最後階段 <span className="text-white font-bold">保護梅林</span> 不被刺殺。
-              </div>
-              <div className="bg-red-900/30 p-3 rounded-lg border border-red-500/30">
-                <span className="text-red-400 font-bold text-base block mb-1">🔴 邪惡方獲勝：</span>
-                達成以下 <span className="text-white font-bold">任一</span> 條件即可：<br/>
-                1. 破壞 <span className="text-white font-bold">3</span> 次任務。<br/>
-                2. 任務結束後，刺客成功 <span className="text-white font-bold">刺殺梅林</span>。<br/>
-                3. 連續 <span className="text-white font-bold">5</span> 次組隊投票流標 (未發車)。
-              </div>
-            </div>
+          <section>
+            <h3 className="text-white font-bold text-lg mb-2 flex items-center"><Users className="w-5 h-5 mr-2 text-blue-400"/> 兩大陣營</h3>
+            <ul className="list-disc pl-5 space-y-1 text-sm">
+              <li><span className="text-blue-400 font-bold">亞瑟忠臣 (藍)</span>：找出邪惡方，成功完成 <span className="font-bold text-white">3</span> 次任務。</li>
+              <li><span className="text-red-400 font-bold">莫德雷德爪牙 (紅)</span>：隱藏身份，破壞 <span className="font-bold text-white">3</span> 次任務，或刺殺梅林。</li>
+            </ul>
           </section>
 
-          {/* 隱藏機制與細節 */}
-          <section className="space-y-3">
-            <h3 className="text-white font-bold text-lg flex items-center border-b border-slate-700 pb-2">
-              <AlertTriangle className="w-5 h-5 mr-2 text-amber-500"/> 關鍵隱藏機制
-            </h3>
-            <ul className="list-disc pl-5 space-y-2 text-sm">
-              <li>
-                <span className="text-amber-400 font-bold">流標計數 (Vote Track)：</span>
-                若大家投票反對隊長提名的隊伍，流標計數 +1。若累積滿 <span className="text-red-400 font-bold">5 次流標</span>，邪惡方直接判定獲勝（王國崩潰）。
-              </li>
-              <li>
-                <span className="text-amber-400 font-bold">雙壞人機制 (7人+局)：</span>
-                在 7 人以上的局，<span className="text-white font-bold">第 4 個任務</span> 需要出現 <span className="text-red-400 font-bold">2 張失敗票</span> 才會判定任務失敗，否則視為成功。
-              </li>
-              <li>
-                <span className="text-amber-400 font-bold">投票規則：</span>
-                <span className="text-blue-400">好人</span> 出任務時只能投「成功」；<span className="text-red-400">壞人</span> 可以選擇投「成功」(偽裝) 或「失敗」(破壞)。
-              </li>
+          <section>
+            <h3 className="text-white font-bold text-lg mb-2 flex items-center"><Crown className="w-5 h-5 mr-2 text-yellow-400"/> 遊戲流程</h3>
+            <ol className="list-decimal pl-5 space-y-2 text-sm">
+              <li><span className="text-yellow-400">組隊</span>：隊長選擇隊員出任務。</li>
+              <li><span className="text-yellow-400">投票</span>：所有人公開表決是否同意這個隊伍。</li>
+              <li><span className="text-yellow-400">任務</span>：隊伍成員祕密決定任務「成功」或「失敗」。</li>
+            </ol>
+          </section>
+
+          <section>
+            <h3 className="text-white font-bold text-lg mb-2 flex items-center"><AlertTriangle className="w-5 h-5 mr-2 text-red-500"/> 特殊規則</h3>
+            <ul className="list-disc pl-5 space-y-1 text-sm">
+              <li><span className="text-amber-500 font-bold">單一失敗制</span>：無論幾人局，只要任務中出現 <span className="font-bold text-red-500">1</span> 張失敗票，任務即判定失敗。</li>
+              <li><span className="text-red-500 font-bold">隨時刺殺</span>：刺客可隨時宣告身分並發動刺殺，若猜中梅林則邪惡方直接獲勝，猜錯則直接落敗。</li>
             </ul>
           </section>
         </div>
@@ -734,6 +717,21 @@ export default function AvalonGame() {
             {status === false && <XCircle className="absolute -bottom-2 -right-2 w-7 h-7 text-red-500 bg-slate-900 rounded-full border-2 border-slate-900" />}
           </div>
         ))}
+        
+      </div>
+      {/* --- 新增：隨時刺殺按鈕 (加在這裡！) --- */}
+      <div className="mb-4 flex justify-end">
+        <button 
+          onClick={() => {
+            if (window.confirm('⚠️ 警告：這將強制中斷遊戲進程！\n\n如果你是刺客，且已經確認梅林身分，請按下「確定」直接進行刺殺環節。\n\n若刺殺失敗，好人將直接獲勝。')) {
+              setPhase('ASSASSIN');
+            }
+          }}
+          className="flex items-center px-4 py-2 bg-red-900/30 border border-red-500/50 text-red-400 rounded-lg text-sm font-bold hover:bg-red-900/50 hover:text-red-200 transition-colors"
+        >
+          <Skull className="w-4 h-4 mr-2" />
+          刺客現身
+        </button>
       </div>
 
       {/* 根據子階段渲染內容 */}
