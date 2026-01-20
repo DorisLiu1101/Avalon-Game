@@ -157,15 +157,51 @@ const TutorialModal = ({ isOpen, onClose }) => {
           <h2 className="text-2xl font-bold text-amber-500 flex items-center"><BookOpen className="mr-3" /> 傳說指南</h2>
         </div>
         
-        <div className="p-6 space-y-6 overflow-y-auto max-h-[60vh] text-slate-300">
+<div className="p-6 space-y-6 overflow-y-auto max-h-[60vh] text-slate-300">
+          
+          {/* 1. 陣營簡介 */}
           <section>
             <h3 className="text-white font-bold text-lg mb-2 flex items-center"><Users className="w-5 h-5 mr-2 text-blue-400"/> 兩大陣營</h3>
             <ul className="list-disc pl-5 space-y-1 text-sm">
-              <li><span className="text-blue-400 font-bold">忠臣 (藍)</span>：找出邪惡方，成功完成 <span className="font-bold text-white">3</span> 次任務。</li>
-              <li><span className="text-red-400 font-bold">爪牙 (紅)</span>：隱藏身份，破壞 <span className="font-bold text-white">3</span> 次任務，或刺殺梅林。</li>
+              <li><span className="text-blue-400 font-bold">亞瑟忠臣 (藍)</span>：找出邪惡方，成功完成 <span className="font-bold text-white">3</span> 次任務。</li>
+              <li><span className="text-red-400 font-bold">莫德雷德爪牙 (紅)</span>：隱藏身份，破壞 <span className="font-bold text-white">3</span> 次任務，或刺殺梅林。</li>
             </ul>
           </section>
 
+          {/* 2. 新增：角色職能詳解 (就是這裡！) */}
+          <section>
+             <h3 className="text-white font-bold text-lg mb-3 flex items-center"><Dna className="w-5 h-5 mr-2 text-green-400"/> 角色職能</h3>
+             
+             <div className="space-y-3">
+                {/* 好人區塊 */}
+                <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-3">
+                  <h4 className="text-blue-300 font-bold text-sm mb-2 flex items-center border-b border-blue-500/30 pb-1">
+                    <Shield className="w-3 h-3 mr-1"/> 正義方 (好人)
+                  </h4>
+                  <ul className="space-y-2 text-xs text-slate-300">
+                    <li><strong className="text-white text-sm">🧙‍♂️ 梅林：</strong>全知者。知道壞人是誰(除莫德雷德)，但必須隱藏身分以免被刺殺。</li>
+                    <li><strong className="text-white text-sm">🛡️ 派西維爾：</strong>保鑣。能看見「梅林與莫甘娜」(分不清)，需判斷真偽並保護梅林。</li>
+                    <li><strong className="text-white text-sm">⚔️ 忠臣：</strong>平民。無特殊情報，靠觀察與邏輯抓出壞人。</li>
+                  </ul>
+                </div>
+
+                {/* 壞人區塊 */}
+                <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-3">
+                  <h4 className="text-red-300 font-bold text-sm mb-2 flex items-center border-b border-red-500/30 pb-1">
+                    <Skull className="w-3 h-3 mr-1"/> 邪惡方 (壞人)
+                  </h4>
+                  <ul className="space-y-2 text-xs text-slate-300">
+                    <li><strong className="text-white text-sm">🦹‍♀️ 莫甘娜：</strong>偽裝者。假扮梅林，混淆派西維爾的視聽。</li>
+                    <li><strong className="text-white text-sm">🗡️ 刺客：</strong>殺手。任務失敗時，有最後一次機會「刺殺梅林」反敗為勝。</li>
+                    <li><strong className="text-white text-sm">👿 莫德雷德：</strong>大魔王。梅林看不到他的壞人身分（顯示為好人）。</li>
+                    <li><strong className="text-white text-sm">🌲 奧伯倫：</strong>邊緣人。看不到隊友，隊友也看不到他。</li>
+                    <li><strong className="text-white text-sm">👺 爪牙：</strong>小兵。知道隊友是誰，負責搞破壞。</li>
+                  </ul>
+                </div>
+             </div>
+          </section>
+
+          {/* 3. 遊戲流程 */}
           <section>
             <h3 className="text-white font-bold text-lg mb-2 flex items-center"><Crown className="w-5 h-5 mr-2 text-yellow-400"/> 遊戲流程</h3>
             <ol className="list-decimal pl-5 space-y-2 text-sm">
@@ -175,6 +211,7 @@ const TutorialModal = ({ isOpen, onClose }) => {
             </ol>
           </section>
 
+          {/* 4. 特殊規則 */}
           <section>
             <h3 className="text-white font-bold text-lg mb-2 flex items-center"><AlertTriangle className="w-5 h-5 mr-2 text-red-500"/> 特殊規則</h3>
             <ul className="list-disc pl-5 space-y-1 text-sm">
