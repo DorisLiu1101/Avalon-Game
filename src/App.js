@@ -35,7 +35,7 @@ const ROLES_CONFIG = {
   },
   SERVANT: { 
     id: 'SERVANT', 
-    roleName: '亞瑟的忠臣', 
+    roleName: '忠臣', 
     side: 'GOOD', 
     description: '你不知道任何人的身份，為了正義而戰。',
     spritePosition: { col: 2, row: 0 }
@@ -70,7 +70,7 @@ const ROLES_CONFIG = {
   },
   MINION: { 
     id: 'MINION', 
-    roleName: '莫德雷德的爪牙', 
+    roleName: '爪牙', 
     side: 'EVIL', 
     description: '你知道誰是邪惡方 (除奧伯倫)。', 
     spritePosition: { col: 3, row: 1 }
@@ -161,8 +161,8 @@ const TutorialModal = ({ isOpen, onClose }) => {
           <section>
             <h3 className="text-white font-bold text-lg mb-2 flex items-center"><Users className="w-5 h-5 mr-2 text-blue-400"/> 兩大陣營</h3>
             <ul className="list-disc pl-5 space-y-1 text-sm">
-              <li><span className="text-blue-400 font-bold">亞瑟忠臣 (藍)</span>：找出邪惡方，成功完成 <span className="font-bold text-white">3</span> 次任務。</li>
-              <li><span className="text-red-400 font-bold">莫德雷德爪牙 (紅)</span>：隱藏身份，破壞 <span className="font-bold text-white">3</span> 次任務，或刺殺梅林。</li>
+              <li><span className="text-blue-400 font-bold">忠臣 (藍)</span>：找出邪惡方，成功完成 <span className="font-bold text-white">3</span> 次任務。</li>
+              <li><span className="text-red-400 font-bold">爪牙 (紅)</span>：隱藏身份，破壞 <span className="font-bold text-white">3</span> 次任務，或刺殺梅林。</li>
             </ul>
           </section>
 
