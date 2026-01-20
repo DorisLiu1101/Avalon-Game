@@ -4,113 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Avalon Game</title>
-
-<!-- 通用導航選單樣式 -->
-<style>
-  /* 選單按鈕 (漢堡條) */
-  #universal-nav-btn {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    z-index: 9999;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 20px;
-    line-height: 1;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  }
-
-  /* 選單容器 */
-  #universal-nav-menu {
-    position: fixed;
-    top: 60px;
-    right: 15px;
-    z-index: 9998;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    width: 200px;
-    display: none; /* 預設隱藏 */
-    overflow: hidden;
-    font-family: sans-serif;
-  }
-
-  /* 顯示選單時的 class */
-  #universal-nav-menu.active {
-    display: block;
-    animation: fadeIn 0.2s;
-  }
-
-  /* 選單項目 */
-  #universal-nav-menu a {
-    display: block;
-    padding: 12px 15px;
-    text-decoration: none;
-    color: #333;
-    border-bottom: 1px solid #eee;
-    font-size: 16px;
-    transition: background 0.2s;
-  }
-
-  #universal-nav-menu a:last-child {
-    border-bottom: none;
-  }
-
-  #universal-nav-menu a:hover {
-    background: #f0f0f0;
-    color: #000;
-  }
-
-  /* 標題樣式 */
-  #universal-nav-menu .nav-title {
-    background: #f8f9fa;
-    color: #666;
-    font-size: 12px;
-    padding: 8px 15px;
-    font-weight: bold;
-    letter-spacing: 1px;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>
-
-<!-- 選單 HTML 結構 -->
-<button id="universal-nav-btn" onclick="toggleUniversalMenu()">☰</button>
-
-<div id="universal-nav-menu">
-  <div class="nav-title">切換遊戲</div>
-  <!-- 請記得將 href 改為你的 大廳頁面 網址 -->
-  <a href="https://your-lobby-url.vercel.app/">🏠 回大廳 (Lobby)</a>
-  <a href="https://avalon-game-kappa.vercel.app/">🛡️ 阿瓦隆 (Avalon)</a>
-  <a href="https://werewolf-game-nine.vercel.app/">🐺 狼人殺 (Werewolf)</a>
-  <a href="https://dorisliu1101.github.io/Spyfall-Game/">🕵️ 找臥底 (Spyfall)</a>
-  <a href="https://geese-gossip-game.vercel.app/">🪿 以鵝傳鵝 (Geese)</a>
-</div>
-
-<!-- 選單邏輯 -->
-<script>
-  function toggleUniversalMenu() {
-    const menu = document.getElementById('universal-nav-menu');
-    menu.classList.toggle('active');
-  }
-
-  // 點擊頁面其他地方關閉選單
-  document.addEventListener('click', function(event) {
-    const menu = document.getElementById('universal-nav-menu');
-    const btn = document.getElementById('universal-nav-btn');
-    if (!menu.contains(event.target) && !btn.contains(event.target)) {
-      menu.classList.remove('active');
-    }
-  });
-</script>
-
     
     <!-- 就在這裡！加上這一行！ -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -121,3 +14,4 @@
   </body>
 
 </html>
+
