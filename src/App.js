@@ -681,8 +681,13 @@ export default function AvalonGame() {
                type={player.side} 
                isRevealed={true} 
                spritePosition={player.spritePosition}
-               onClick={() => {}} 
+               onClick={nextReveal} // 修改處：點擊卡牌觸發 nextReveal
              />
+             
+             {/* 新增：灰色引導小字 (不閃動) */}
+             <p className="mt-4 text-slate-500 text-sm font-bold text-center">
+               記住了，點擊卡牌隱藏
+             </p>
              
              <div className="mt-8 w-full bg-slate-900/90 backdrop-blur rounded-xl p-5 border border-slate-700 shadow-xl">
                <h3 className="text-slate-400 text-sm tracking-widest uppercase mb-4 text-center flex items-center justify-center font-bold"><Eye className="w-4 h-4 mr-2"/> 已知情報</h3>
@@ -703,12 +708,7 @@ export default function AvalonGame() {
                )}
              </div>
 
-             <button 
-              onClick={nextReveal}
-              className="mt-8 w-full py-5 bg-slate-800 text-slate-300 text-lg font-bold rounded-xl border border-slate-600 active:bg-slate-700 hover:text-white transition-colors"
-            >
-              我記住了，隱藏身份
-            </button>
+             {/* 刪除處：底部的按鈕已移除 */}
           </div>
         )}
       </div>
