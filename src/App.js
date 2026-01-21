@@ -717,19 +717,11 @@ export default function AvalonGame() {
 
   const renderDashboard = () => (
     <div className="w-full max-w-lg mx-auto p-4 flex flex-col min-h-screen">
-      {/* 頂部狀態列 */}
+      {/* 頂部狀態列 (已移除流標計數) */}
       <div className="flex justify-between items-end mb-6 border-b border-slate-800 pb-4">
         <div>
           <h2 className="text-amber-500 font-bold text-xl flex items-center"><Scroll className="w-5 h-5 mr-2"/>第 {currentQuestIndex + 1} 次遠征</h2>
           <p className="text-slate-400 text-sm mt-1">需 <span className="text-white font-bold">{Math.abs(QUEST_CONFIG[playerCount][currentQuestIndex])}</span> 人出征 {QUEST_CONFIG[playerCount][currentQuestIndex] < 0 && <span className="text-red-400 font-bold">(需2張失敗)</span>}</p>
-        </div>
-        <div className="text-right">
-          <div className="flex items-center justify-end space-x-1 mb-1">
-            {[...Array(5)].map((_, i) => (
-              <div key={i} className={`w-4 h-4 rounded-full transition-colors ${i < failedVoteCount ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]' : 'bg-slate-700'}`}></div>
-            ))}
-          </div>
-          <p className="text-sm text-slate-500">流標計數</p>
         </div>
       </div>
 
@@ -749,8 +741,19 @@ export default function AvalonGame() {
         ))}
       </div>
 
-      {/* 新增：隨時刺殺按鈕 */}
-      <div className="mb-4 flex justify-end">
+      {/* 控制列：流標計數 (左) + 隨時刺殺 (右) */}
+      <div className="mb-4 flex justify-between items-end">
+        {/* 左側：流標計數 */}
+        <div>
+          <p className="text-xs text-slate-500 mb-1 font-bold tracking-wider">流標計數</p>
+          <div className="flex items-center space-x-1">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className={`w-4 h-4 rounded-full transition-colors border border-slate-800 ${i < failedVoteCount ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]' : 'bg-slate-700'}`}></div>
+            ))}
+          </div>
+        </div>
+
+        {/* 右側：刺客按鈕 */}
         <button 
           onClick={() => {
             if (window.confirm('⚠️ 警告：這將強制中斷遊戲進程！\n\n如果你是刺客，且已經確認梅林身分，請按下「確定」直接進行刺殺環節。\n\n若刺殺失敗，好人將直接獲勝。')) {
